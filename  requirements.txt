@@ -1,0 +1,9 @@
+streamlit
+pandas
+langchain-community
+langchain-huggingface
+langchain-chroma
+chromadb
+sentence-transformers
+openai
+Ollama

@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    # DO NOT publish 11434 to the internet; keep it internal
+    # ports: ["11434:11434"]    # <-- leave this commented for security
+    volumes:
+      - ollama:/root/.ollama
+
+  app:
+    build: .
+    container_name: finance-copilot
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    environment:
+      # Point OpenAI SDK to the *internal* Ollama service
+      - OPENAI_BASE_URL=http://ollama:11434/v1
+      - OPENAI_API_KEY=ollama
+      - OLLAMA_MODEL=llama3.2     # or llama3.1:8b-instruct
+      - TOKENIZERS_PARALLELISM=false
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
+
+volumes:
+  ollama:
