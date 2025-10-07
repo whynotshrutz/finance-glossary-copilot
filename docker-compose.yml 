@@ -28,3 +28,16 @@ services:
 
 volumes:
   ollama:
+
+
+
+---
+
+
+- Lines starting with `#` or `##` are **section headings**.
+- Lines with `---` create **horizontal dividers**.
+- Blank lines between paragraphs make spacing clean.
+- GitHub automatically renders this beautifully — with bold headings, spacing, and bullets.
+
+---
+
